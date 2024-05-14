@@ -33,6 +33,11 @@ Route::group(['middleware', 'adminuser'], function () {
     Route::get('add_post', [DashboardController::class, 'add_post'])->name('add_post');
     Route::post('store_post', [PostController::class, 'store']);
     Route::get('view_post', [PostController::class, 'view']);
+    Route::get('add_cat', function(){
+        return view('backend.category.category_add');
+    });
+    Route::post('store_cat', [PostController::class, 'store_cat']);
+    Route::get('cat_list', [PostController::class, 'view_cat']);
 
 
 

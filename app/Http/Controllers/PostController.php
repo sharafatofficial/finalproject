@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\AddPost;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -27,5 +28,18 @@ class PostController extends Controller
     
     return view('backend.post_view',compact("posts"));
     
+   }
+
+   function store_cat(Request $request){
+      // dd($request->all());
+     $category=new Category;
+     $category->name=$request->name;
+     $category->save();
+
+   }
+   function view_cat(){
+      $category=Category::all();
+
+      return view('backend.category.category_view',compact('category'));
    }
 }
