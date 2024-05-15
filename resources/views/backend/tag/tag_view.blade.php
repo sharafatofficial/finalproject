@@ -19,9 +19,10 @@
     @if (session('status'))
                 <h6 class="alert alert-success">{{ session('status') }}</h6>
             @endif
+            <a class="btn btn-info"    href="{{url('add_tag')}}">Add Tag</a>
     <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Category</h5>
+              <h5 class="card-title">Tags</h5>
 
               <!-- Default Table -->
               <table class="table">
@@ -33,13 +34,13 @@
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach($category as $mypost)
+                  @foreach($tag as $mypost)
                   <tr>
                     <th scope="row">{{$mypost->id}}</th>
                     <td>{{$mypost->name}}</td>
                     <td>
-                        <a href="{{url('cat_update')}}/{{$mypost->id}}" class="btn btn-info">Edit</a>
-                        <a href="{{url('cat_delete')}}/{{$mypost->id}}" class="btn btn-danger">Delete</a>
+                        <a href="{{url('tag_update')}}/{{$mypost->id}}" class="btn btn-info">Edit</a>
+                        <a href="{{url('tag_delete')}}/{{$mypost->id}}" class="btn btn-danger">Delete</a>
                       </td>
                      </tr>
                   @endforeach

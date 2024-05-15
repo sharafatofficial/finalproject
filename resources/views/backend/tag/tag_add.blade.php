@@ -9,38 +9,40 @@
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          @if(isset($cat))
-          <li class="breadcrumb-item active">Update category</li>
+          
+          @if(isset($tag))
+          <li class="breadcrumb-item active">Update Tag</li>
           @else
-          <li class="breadcrumb-item active">Add category</li>
+          <li class="breadcrumb-item active">Add Tag</li>
           @endif
-        
         </ol>
       </nav>
     </div><!-- End Page Title -->
 
     <div class="card">
             <div class="card-body">
-              <h5 class="card-title">category</h5>
+              <h5 class="card-title">Tag</h5>
+
+              
+    
 
               <!-- Horizontal Form -->
-              @if(isset($cat->id))
-              <form action="{{url('update_cat/'.$cat->id)}}" enctype="multipart/form-data" method="post">
+              @if(isset($tag->id))
+              <form action="{{url('update_tag/'.$tag->id)}}" enctype="multipart/form-data" method="post">
                 @else
-                <form action="{{url('store_cat')}}" enctype="multipart/form-data" method="post">
+              <form action="{{url('store_tag')}}" enctype="multipart/form-data" method="post">
 
                 @endif
-             
                 @csrf
                 <div class="row mb-3">
-                  <label for="inputEmail3" class="col-sm-2 col-form-label">Category Name</label>
+                  <label for="inputEmail3" class="col-sm-2 col-form-label">Tag Name</label>
                   <div class="col-sm-10">
-                    <input type="text" name="name" value=" @if(isset($cat->id)) {{$cat->name}} @endif" class="form-control" id="inputText">
+                    <input type="text" name="name" value="@if(isset($tag->id)){{ $tag->name }} @endif" class="form-control" value="" id="inputText">
                   </div>
                 </div>
                
                 <div class="text-center">
-                @if(isset($cat->id))
+                @if(isset($tag->id))
                   <button type="submit" class="btn btn-primary">Update</button>
                   @else
                   <button type="submit" class="btn btn-primary">Submit</button>
@@ -51,6 +53,6 @@
 
             </div>
           </div>
-
+        
 
 @endsection

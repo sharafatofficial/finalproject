@@ -20,7 +20,7 @@ class PostController extends Controller
     $add_post->thumbnail=$imageName;
     $add_post->save();
     
-    return redirect()->back();
+    return redirect()->route('post_list')->with('status','Post Added Successfully');
    }
 
    function view(){
@@ -30,16 +30,31 @@ class PostController extends Controller
     
    }
 
-   function store_cat(Request $request){
-      // dd($request->all());
-     $category=new Category;
-     $category->name=$request->name;
-     $category->save();
+   function delete($id){
+      AddPost::find($id)->delete();
 
-   }
-   function view_cat(){
-      $category=Category::all();
+      return redirect()->back()->with('status','Post Deleted Successfully');;
+    }
 
-      return view('backend.category.category_view',compact('category'));
-   }
+    function edit($id){
+
+       $post=AddPost::find($id)->first();
+       return view('backend.post_add',compact('post'));
+    }
+
+    function update(Request $request ,$id){
+
+       $table=AddPost::find($id);
+       $table->title=$request->title;
+       $table->category=$request->category;
+       $table->tag=$request->tag;
+       $table->tranding=$request->tranding;
+       $table->description=$request->description;
+       $imageName = time().'.'.request()->thumbnail->getClientOriginalExtension();
+       request()->thumbnail->move(public_path('images'), $imageName);
+       $table->thumbnail=$imageName;
+       $table->update();
+       
+       return redirect()->route('post_list')->with('status','Post Updated Successfully');
+    }
 }
