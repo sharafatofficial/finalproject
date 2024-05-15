@@ -43,8 +43,8 @@
                   <tr>
                     <th scope="row">{{$mypost->id}}</th>
                     <td>{{$mypost->title}}</td>
-                    <td>{{$mypost->category}}</td>
-                    <td>{{$mypost->tag}}</td>
+                    <td>{{$mypost->show_category->name}}</td>
+                    <td>{{$mypost->show_tag->name}}</td>
                     <td>{{$mypost->description}}</td>
                     <td>{{$mypost->comments}}</td>
                     <td> <img width="200px" height="100px" src="{{ asset('public/images/'.$mypost->thumbnail) }}" /> </td>

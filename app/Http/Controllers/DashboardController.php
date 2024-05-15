@@ -11,7 +11,5 @@ class DashboardController extends Controller
         return view('backend.dashboard');
     } 
 
-    function add_post(){
-        return view('backend.post_add');
-    }
+   
 }

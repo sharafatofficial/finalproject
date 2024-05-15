@@ -32,7 +32,7 @@ Route::get('logout', [AuthController::class, 'logout']);
 Route::group(['middleware', 'adminuser'], function () {
    
     Route::get('panel/dashboard', [DashboardController::class, 'dashboard']);
-    Route::get('add_post', [DashboardController::class, 'add_post'])->name('add_post');
+    Route::get('add_post', [PostController::class, 'add_post'])->name('add_post');
     Route::post('store_post', [PostController::class, 'store']);
     Route::get('view_post', [PostController::class, 'view'])->name('post_list');
     Route::get('post_delete/{id}', [PostController::class, 'delete']);

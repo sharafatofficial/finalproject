@@ -2,12 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tag;
 use App\Models\AddPost;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
+
+   function add_post(){
+      $categories=Category::all();
+      $tags=Tag::all();
+      return view('backend.post_add',compact('categories','tags'));
+  }
+
    function store(Request $request){
     $add_post= new AddPost;
     $add_post->title=$request->title;
@@ -20,26 +28,30 @@ class PostController extends Controller
     $add_post->thumbnail=$imageName;
     $add_post->save();
     
-    return redirect()->route('post_list')->with('status','Post Added Successfully');
+    return redirect()->route('post_list')->with('status','Post Added Successfully')->with('expire', 5);
    }
 
    function view(){
     $posts=AddPost::all();
-    
-    return view('backend.post_view',compact("posts"));
+   // foreach($posts as $post){
+   //   echo  $post->show_category->name .'<br>';
+   // }
+     return view('backend.post_view',compact("posts"));
     
    }
 
    function delete($id){
       AddPost::find($id)->delete();
 
-      return redirect()->back()->with('status','Post Deleted Successfully');;
+      return redirect()->back()->with('status','Post Deleted Successfully')->with('expire', 5);
     }
 
     function edit($id){
 
-       $post=AddPost::find($id)->first();
-       return view('backend.post_add',compact('post'));
+       $post=AddPost::where('id',$id)->first();
+       $categories=Category::all();
+      $tags=Tag::all();
+       return view('backend.post_add',compact('post','categories','tags'));
     }
 
     function update(Request $request ,$id){
@@ -50,11 +62,13 @@ class PostController extends Controller
        $table->tag=$request->tag;
        $table->tranding=$request->tranding;
        $table->description=$request->description;
-       $imageName = time().'.'.request()->thumbnail->getClientOriginalExtension();
-       request()->thumbnail->move(public_path('images'), $imageName);
+       if(isset(request()->thumbnail)){
+         $imageName = time().'.'.request()->thumbnail->getClientOriginalExtension();
+         request()->thumbnail->move(public_path('images'), $imageName);
        $table->thumbnail=$imageName;
+      }
        $table->update();
        
-       return redirect()->route('post_list')->with('status','Post Updated Successfully');
+       return redirect()->route('post_list')->with('status','Post Updated Successfully')->with('expire', 5);
     }
 }

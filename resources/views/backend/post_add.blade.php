@@ -37,18 +37,29 @@
                     <input type="text" name="title" value="@if(isset($post->id)) {{$post->title}} @endif" class="form-control" id="inputText">
                   </div>
                 </div>
-                <div class="row mb-3">
+                              <div class="row mb-3">
                   <label for="inputEmail3" class="col-sm-2 col-form-label">Category</label>
                   <div class="col-sm-10">
-                    <input type="text" name="category" value="@if(isset($post->id)) {{$post->category}} @endif" class="form-control" id="inputEmail">
+                      <select name="category" class="form-control" id="category">
+                          <option value="">Select Category</option>
+                          @foreach($categories as $category)
+                              <option value="{{ $category->id }}" @if(isset($post->category) && $post->category == $category->id) selected @endif>{{ $category->name }}</option>
+                          @endforeach
+                      </select>
                   </div>
-                </div>
-                <div class="row mb-3">
+              </div>
+
+              <div class="row mb-3">
                   <label for="inputEmail3" class="col-sm-2 col-form-label">Tag</label>
                   <div class="col-sm-10">
-                    <input type="text" name="tag" value="@if(isset($post->id)) {{$post->tag}} @endif" class="form-control" id="inputEmail">
+                      <select name="tag" class="form-control" id="tag">
+                          <option value="">Select Tag</option>
+                          @foreach($tags as $tag)
+                              <option value="{{ $tag->id }}" @if(isset($post->tag) && $post->tag == $tag->id) selected @endif>{{ $tag->name }}</option>
+                          @endforeach
+                      </select>
                   </div>
-                </div>
+              </div>
                 <div class="row mb-3">
                   <label for="inputEmail3" class="col-sm-2 col-form-label">Description</label>
                   <div class="col-sm-10">
