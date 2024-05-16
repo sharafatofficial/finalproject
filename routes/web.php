@@ -8,7 +8,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('frontend.index');
 });
 
 Route::get('login', [AuthController::class, 'login']);

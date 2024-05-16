@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use auth;
 use App\Models\Tag;
+use App\Models\User;
 use App\Models\AddPost;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -26,16 +28,26 @@ class PostController extends Controller
     $imageName = time().'.'.request()->thumbnail->getClientOriginalExtension();
     request()->thumbnail->move(public_path('images'), $imageName);
     $add_post->thumbnail=$imageName;
+    $add_post->author_id = auth()->id();
     $add_post->save();
     
     return redirect()->route('post_list')->with('status','Post Added Successfully')->with('expire', 5);
    }
 
    function view(){
-    $posts=AddPost::all();
+      $auth_id=auth()->id();
+      $auth_type=User::where('id',$auth_id)->first();
+      $admin=$auth_type->isadmin;
+      if($admin==1){
+         $posts=AddPost::all();
+      }elseif($admin==0){
+         $posts=AddPost::where('author_id',$auth_id)->get();
+      }
+  
    // foreach($posts as $post){
    //   echo  $post->show_category->name .'<br>';
    // }
+  
      return view('backend.post_view',compact("posts"));
     
    }
