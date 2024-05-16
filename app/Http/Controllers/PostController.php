@@ -68,7 +68,7 @@ class PostController extends Controller
        $table->thumbnail=$imageName;
       }
        $table->update();
-       
        return redirect()->route('post_list')->with('status','Post Updated Successfully')->with('expire', 5);
+
     }
 }
