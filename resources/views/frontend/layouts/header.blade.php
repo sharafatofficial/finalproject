@@ -43,7 +43,7 @@
           <li class="nav-item">
             <a class="nav-link" href="privacy-policy.html">Privacy Policy</a>
           </li>
-
+ 
 
         </ul>
       </div>
