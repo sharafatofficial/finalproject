@@ -4,12 +4,18 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\IndexController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 
-Route::get('/', function () {
-    return view('frontend.index');
-});
+
+// front routes/
+// // Route::get('/', function () {
+// //     return view('frontend.index');
+// });
+Route::get('/',[IndexController::class,'index']);
+// ---------------------------------------------
+
 
 Route::get('login', [AuthController::class, 'login']);
 Route::post('login', [AuthController::class, 'auth_login']);

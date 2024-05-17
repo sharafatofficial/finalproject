@@ -10,7 +10,7 @@
         <ul class="navbar-nav mx-auto">
 
           <li class="nav-item">
-            <a class="nav-link" href="index.html">Home</a>
+            <a class="nav-link" href="{{url('/')}}">Home</a>
           </li>
 
           <li class="nav-item dropdown">
@@ -19,29 +19,29 @@
             </a>
             <div class="dropdown-menu">
               
-              <a class="dropdown-item" href="category.html">Learning</a>
+              <a class="dropdown-item" href="#">Learning</a>
               
-              <a class="dropdown-item" href="category.html">Technical</a>
+              <a class="dropdown-item" href="#">Technical</a>
 
-              <a class="dropdown-item" href="category.html">Motivational</a>
+              <a class="dropdown-item" href="#">Motivational</a>
 
-              <a class="dropdown-item" href="category.html">Sports</a>
+              <a class="dropdown-item" href="#">Sports</a>
               
               
             </div>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="about-us.html">About Us</a>
+            <a class="nav-link" href="#">About Us</a>
           </li>
 
 
           <li class="nav-item">
-            <a class="nav-link" href="contact.html">Contact Us</a>
+            <a class="nav-link" href="#">Contact Us</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="privacy-policy.html">Privacy Policy</a>
+            <a class="nav-link" href="#">Privacy Policy</a>
           </li>
  
 

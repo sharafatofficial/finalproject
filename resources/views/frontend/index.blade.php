@@ -1,3 +1,6 @@
+@php 
+use Carbon\Carbon;
+@endphp
 @extends('frontend.layouts.app')
 @section('content')
 <!-- start of banner -->
@@ -7,21 +10,10 @@
       <div class="col-lg-9 mx-auto">
         <h1 class="mb-5">What Would You <br> Like To Read Today?</h1>
         <ul class="list-inline widget-list-inline">
-          <li class="list-inline-item"><a href="tags.html">City</a></li>
-          <li class="list-inline-item"><a href="tags.html">Sports</a></li>
-          <li class="list-inline-item"><a href="tags.html">Ball</a></li>
-          <li class="list-inline-item"><a href="tags.html">Bat</a></li>
-          <li class="list-inline-item"><a href="tags.html">Web</a></li>
-          <li class="list-inline-item"><a href="tags.html">English</a></li>
-          <li class="list-inline-item"><a href="tags.html">Pak Study</a></li>
-          <li class="list-inline-item"><a href="tags.html">Food</a></li>
-          <li class="list-inline-item"><a href="tags.html">Laptop</a></li>
-          <li class="list-inline-item"><a href="tags.html">Mobile</a></li>
-          <li class="list-inline-item"><a href="tags.html">Computers</a></li>
-          <li class="list-inline-item"><a href="tags.html">Taste</a></li>
-          <li class="list-inline-item"><a href="tags.html">Tasty</a></li>
-          <li class="list-inline-item"><a href="tags.html">Vlog</a></li>
-          
+            @foreach($tags as $tag)
+
+          <li class="list-inline-item"><a href="{{url('post_detail').'/'.$tag->id}}">{{$tag->name}}</a></li>
+          @endforeach
         </ul>
       </div>
     </div>
@@ -80,134 +72,85 @@
     <div class="row">
       <div class="col-lg-4 mb-5">
         <h2 class="h5 section-title">Editors Pick</h2>
+        @foreach($posts as $post)
         <article class="card">
           <div class="post-slider slider-sm">
-            <img src="images/post/cricket.jpeg" class="card-img-top" alt="post-thumb">
+            <img src="{{ asset('public/images/'.$post->thumbnail) }}" class="card-img-top" alt="post-thumb">
           </div>
           
           <div class="card-body">
-            <h3 class="h4 mb-3"><a class="post-title" href="post-details.html">The Timeless Allure of Cricket: A Game Beyond Boundaries</a></h3>
+            <h3 class="h4 mb-3"><a class="post-title" href="post-details.html">{{$post->title}}</a></h3>
             <ul class="card-meta list-inline">
               <li class="list-inline-item">
-                  <span>Admin</span>
+                  <span>{{$post->user->name}}</span>
                 
               </li>
               <li class="list-inline-item">
-                <i class="ti-calendar"></i>14 jan, 2020
+                <i class="ti-calendar"></i>{{ Carbon::parse($post->created_at)->format('Y-m-d') }}
               </li>
               <li class="list-inline-item">
                 <ul class="card-meta-tag list-inline">
-                  <li class="list-inline-item"><a href="tags.html">Sports</a></li>
-                  <li class="list-inline-item"><a href="tags.html">Cricket</a></li>
-                  <li class="list-inline-item"><a href="tags.html">Bat</a></li>
+                  <li class="list-inline-item"><a href="tags.html">{{$post->show_category->name}}</a></li>
+                  <li class="list-inline-item"><a href="tags.html">{{$post->show_tag->name}}</a></li>
                 </ul>
               </li>
             </ul>
-            <p>In the realm of sports, cricket stands as a symbol of tradition, resilience, and camaraderie. Originating in England in the 16th century, it has transcended geographical boundaries to become a global phenomenon ....…</p>
+            <p>{{$post->description}}</p>
             <a href="post-details.html" class="btn btn-outline-primary">Read More</a>
           </div>
         </article>
+        @endforeach
       </div>
       <div class="col-lg-4 mb-5">
         <h2 class="h5 section-title">Trending Post</h2>
-        
+        @foreach($tranding as $post)
         <article class="card mb-4">
           <div class="card-body d-flex">
-            <img class="card-img-sm" src="images/post/advice.webp">
+            <img class="card-img-sm" src="{{ asset('public/images/'.$post->thumbnail) }}">
             <div class="ml-3">
-              <h4><a href="post-details.html" class="post-title">Advice From a Twenty Something</a></h4>
+              <h4><a href="post-details.html" class="post-title">{{$post->title}}</a></h4>
               <ul class="card-meta list-inline mb-0">
                 <li class="list-inline-item mb-0">
-                  <i class="ti-calendar"></i>14 jan, 2020
+                  <i class="ti-calendar"></i>{{ Carbon::parse($post->created_at)->format('Y-m-d') }}
                 </li>
-                <li class="list-inline-item mb-0">
-                  <i class="ti-timer"></i>2 Min To Read
-                </li>
-              </ul>
-            </div>
-          </div>
-        </article>
-        
-        <article class="card mb-4">
-          <div class="card-body d-flex">
-            <img class="card-img-sm" src="images/post/design.webp">
-            <div class="ml-3">
-              <h4><a href="post-details.html" class="post-title">The Design Files - Homes Minimalist</a></h4>
-              <ul class="card-meta list-inline mb-0">
-                <li class="list-inline-item mb-0">
-                  <i class="ti-calendar"></i>14 jan, 2020
-                </li>
-                <li class="list-inline-item mb-0">
-                  <i class="ti-timer"></i>2 Min To Read
-                </li>
-              </ul>
-            </div>
-          </div>
-        </article>
-        
-        <article class="card mb-4">
-          <div class="card-body d-flex">
-            <img class="card-img-sm" src="images/post/skiny.webp">
-            <div class="ml-3">
-              <h4><a href="post-details.html" class="post-title">The Skinny Confidential</a></h4>
-              <ul class="card-meta list-inline mb-0">
-                <li class="list-inline-item mb-0">
-                  <i class="ti-calendar"></i>14 jan, 2020
-                </li>
-                <li class="list-inline-item mb-0">
-                  <i class="ti-timer"></i>2 Min To Read
-                </li>
-              </ul>
-            </div>
-          </div>
-        </article>
+                <li class="list-inline-item mb-0">{{ Carbon::parse($post->created_at)->diffForHumans() }}
 
-        <article class="card mb-4">
-          <div class="card-body d-flex">
-            <img class="card-img-sm" src="images/post/art.jpeg">
-            <div class="ml-3">
-              <h4><a href="post-details.html" class="post-title">The Art of Graphic Design: Turning Ideas to Visual Masterpieces</a></h4>
-              <ul class="card-meta list-inline mb-0">
-                <li class="list-inline-item mb-0">
-                  <i class="ti-calendar"></i>14 jan, 2020
-                </li>
-                <li class="list-inline-item mb-0">
-                  <i class="ti-timer"></i>2 Min To Read
                 </li>
               </ul>
             </div>
           </div>
         </article>
+        @endforeach
       </div>
       
       <div class="col-lg-4 mb-5">
-        <h2 class="h5 section-title">Popular Post</h2>
-        
+        <h2 class="h5 section-title">Latest Posts</h2>
+        @foreach($latestPosts as $late)
         <article class="card">
           <div class="post-slider slider-sm">
-            <img src="images/post/learning.jpg" class="card-img-top" alt="post-thumb">
+            <img src="{{ asset('public/images/'.$late->thumbnail) }}" class="card-img-top" alt="post-thumb">
           </div>
           <div class="card-body">
-            <h3 class="h4 mb-3"><a class="post-title" href="post-details.html"> The Endless Pursuit of Learning: Embracing Knowledge as a Lifelong Journey</a></h3>
+            <h3 class="h4 mb-3"><a class="post-title" href="post-details.html">{{$late->title}}</a></h3>
             <ul class="card-meta list-inline">
               <li class="list-inline-item">
-                  <span>Asif Ali</span>
+                  <span>{{$late->user->name}}</span>
               </li>
               <li class="list-inline-item">
-                <i class="ti-calendar"></i>14 jan, 2020
+                <i class="ti-calendar"></i>{{ Carbon::parse($late->created_at)->format('Y-m-d') }}
               </li>
               <li class="list-inline-item">
                 <ul class="card-meta-tag list-inline">
-                  <li class="list-inline-item"><a href="tags.html">City</a></li>
-                  <li class="list-inline-item"><a href="tags.html">Food</a></li>
-                  <li class="list-inline-item"><a href="tags.html">Taste</a></li>
+                  <li class="list-inline-item"><a href="tags.html">{{$late->show_category->name}}</a></li>
+                  <li class="list-inline-item"><a href="tags.html">{{$late->show_tag->name}}</a></li>
                 </ul>
               </li>
             </ul>
-            <p>In a world of constant change and evolution, the importance of learning cannot be overstated. Whether we're acquiring new skills, exploring unfamiliar subjects, or expanding our horizons ...…</p>
+            <p>{{$late->descripton}}</p>
             <a href="post-details.html" class="btn btn-outline-primary">Read More</a>
           </div>
         </article>
+        @endforeach
       </div>
       <div class="col-12">
         <div class="border-bottom border-default"></div>
