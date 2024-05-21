@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class IndexController extends Controller
 {
-    public function index(){
+     function index(){
         $tags=Tag::all();
         $category=Category::all();
         $posts=AddPost::take(2)->get();
@@ -17,4 +17,32 @@ class IndexController extends Controller
         $latestPosts = AddPost::latest()->take(2)->get();
         return view('frontend.index',compact('tags','category','posts','tranding','latestPosts'));
     }
+ 
+    function cat_detail($id){
+        $posts=AddPost::where('category',$id)->first();
+        $cat_name=$posts->show_category->name;
+       
+        $posts=AddPost::where('category',$id)->orderBy('id', 'desc')->get();
+        $tags=Tag::all();
+        $category=Category::all();
+        return view('frontend.cat_detail',compact('posts','tags','category','cat_name'));
+    }  
+
+    function tag_detail($id){
+        $posts=AddPost::where('tag',$id)->first();
+        if($posts !=null){
+            $cat_name=$posts->show_tag->name;
+        }
+        else{
+            $cat_name='No Data Found';
+        }
+        
+       
+        $posts=AddPost::where('tag',$id)->orderBy('id', 'desc')->get();
+        $tags=Tag::all();
+        $category=Category::all();
+        return view('frontend.cat_detail',compact('posts','tags','category','cat_name'));
+    }  
+
+
 }

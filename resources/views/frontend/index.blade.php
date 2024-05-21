@@ -79,7 +79,7 @@ use Carbon\Carbon;
           </div>
           
           <div class="card-body">
-            <h3 class="h4 mb-3"><a class="post-title" href="post-details.html">{{$post->title}}</a></h3>
+            <h3 class="h4 mb-3"><a class="post-title" href="{{url('post_detail').'/'.$post->id}}">{{$post->title}}</a></h3>
             <ul class="card-meta list-inline">
               <li class="list-inline-item">
                   <span>{{$post->user->name}}</span>
@@ -96,7 +96,7 @@ use Carbon\Carbon;
               </li>
             </ul>
             <p>{{$post->description}}</p>
-            <a href="post-details.html" class="btn btn-outline-primary">Read More</a>
+            <a href="{{url('post_detail').'/'.$post->id}}" class="btn btn-outline-primary">Read More</a>
           </div>
         </article>
         @endforeach
@@ -164,442 +164,42 @@ use Carbon\Carbon;
     <div class="row justify-content-center">
       <div class="col-lg-8 mb-5 mb-lg-0">
   <h2 class="h5 section-title">Recent Post</h2>
-  <article class="card mb-4">
-    <div class="row card-body">
-      <div class="col-md-4 mb-4 mb-md-0">
-        <div class="post-slider slider-sm">
-          <img src="images/post/advice.webp" class="card-img" alt="post-thumb" style="height:200px; object-fit: cover;">
-          <img src="images/post/advice.webp" class="card-img" alt="post-thumb" style="height:200px; object-fit: cover;">
-        </div>
-      </div>
-      <div class="col-md-8">
-        <h3 class="h4 mb-3"><a class="post-title" href="post-details.html">Advice From a Twenty Something</a></h3>
-        <ul class="card-meta list-inline">
-          <li class="list-inline-item">
-            
-              <span>John Doe</span>
-            
-          </li>
-          
-          <li class="list-inline-item">
-            <i class="ti-calendar"></i>15 jan, 2020
-          </li>
-          <li class="list-inline-item">
-            <ul class="card-meta-tag list-inline">
-              <li class="list-inline-item"><a href="tags.html">Demo</a></li>
-              <li class="list-inline-item"><a href="tags.html">Elements</a></li>
+  
+ <div class="row">
+ @foreach($latestPosts as $late)
+  <div class="col-md-6">
+        <article class="card">
+          <div class="post-slider slider-sm">
+            <img src="{{ asset('public/images/'.$late->thumbnail) }}" class="card-img-top" alt="post-thumb">
+          </div>
+          <div class="card-body">
+            <h3 class="h4 mb-3"><a class="post-title" href="post-details.html">{{$late->title}}</a></h3>
+            <ul class="card-meta list-inline">
+              <li class="list-inline-item">
+                  <span>{{$late->user->name}}</span>
+              </li>
+              <li class="list-inline-item">
+                <i class="ti-calendar"></i>{{ Carbon::parse($late->created_at)->format('Y-m-d') }}
+              </li>
+              <li class="list-inline-item">
+                <ul class="card-meta-tag list-inline">
+                  <li class="list-inline-item"><a href="tags.html">{{$late->show_category->name}}</a></li>
+                  <li class="list-inline-item"><a href="tags.html">{{$late->show_tag->name}}</a></li>
+                </ul>
+              </li>
             </ul>
-          </li>
-        </ul>
-        <p>Heading example Here is example of hedings. You can use this heading by following markdownify rules.</p>
-        <a href="post-details.html" class="btn btn-outline-primary">Read More</a>
-      </div>
-    </div>
-  </article>
+            <p>{{$late->descripton}}</p>
+            <a href="post-details.html" class="btn btn-outline-primary">Read More</a>
+          </div>
+        </article>
+        </div>
+        @endforeach
+  
+ </div>
+ 
 
-  <article class="card mb-4">
-    <div class="row card-body">
-      <div class="col-md-4 mb-4 mb-md-0">
-        <div class="post-slider slider-sm">
-          <img src="images/post/advice.webp" class="card-img" alt="post-thumb" style="height:200px; object-fit: cover;">
-        </div>
-      </div>
-      <div class="col-md-8">
-        <h3 class="h4 mb-3"><a class="post-title" href="post-details.html">Advice From a Twenty Something</a></h3>
-        <ul class="card-meta list-inline">
-          <li class="list-inline-item">
-            
-              <span>Mark Dinn</span>
-            
-          </li>
-          <li class="list-inline-item">
-            <i class="ti-calendar"></i>14 jan, 2020
-          </li>
-          <li class="list-inline-item">
-            <ul class="card-meta-tag list-inline">
-              <li class="list-inline-item"><a href="tags.html">Decorate</a></li>
-              <li class="list-inline-item"><a href="tags.html">Creative</a></li>
-            </ul>
-          </li>
-        </ul>
-        <p>It’s no secret that the digital industry is booming. From exciting startups to global brands</p>
-        <a href="post-details.html" class="btn btn-outline-primary">Read More</a>
-      </div>
-    </div>
-  </article>
-  
-  <article class="card mb-4">
-    <div class="row card-body">
-      <div class="col-md-4 mb-4 mb-md-0">
-        <div class="post-slider slider-sm">
-          <img src="images/post/advice.webp" class="card-img" alt="post-thumb" style="height:200px; object-fit: cover;">
-        </div>
-      </div>
-      <div class="col-md-8">
-        <h3 class="h4 mb-3"><a class="post-title" href="post-details.html">Advice From a Twenty Something</a></h3>
-        <ul class="card-meta list-inline">
-          <li class="list-inline-item">
-           
-              <span>Charls Xaviar</span>
-            
-          </li>
-         
-          <li class="list-inline-item">
-            <i class="ti-calendar"></i>14 jan, 2020
-          </li>
-          <li class="list-inline-item">
-            <ul class="card-meta-tag list-inline">
-              <li class="list-inline-item"><a href="tags.html">Color</a></li>
-              <li class="list-inline-item"><a href="tags.html">Recipe</a></li>
-              <li class="list-inline-item"><a href="tags.html">Fish</a></li>
-            </ul>
-          </li>
-        </ul>
-        <p> It’s no secret that the digital industry is booming. From exciting startups to global brands</p>
-        <a href="post-details.html" class="btn btn-outline-primary">Read More</a>
-      </div>
-    </div>
-  </article>
-  
-  <article class="card mb-4">
-    <div class="row card-body">
-      <div class="col-12">
-        <h3 class="h4 mb-3"><a class="post-title" href="post-details.html">Cheerful Loving Couple Bakers Drinking Coffee</a></h3>
-        <ul class="card-meta list-inline">
-          <li class="list-inline-item">
-            <a href="author-single.html" class="card-meta-author">
-              <img src="images/kate-stone.jpg" alt="Kate Stone">
-              <span>Kate Stone</span>
-            </a>
-          </li>
-          <li class="list-inline-item">
-            <i class="ti-timer"></i>2 Min To Read
-          </li>
-          <li class="list-inline-item">
-            <i class="ti-calendar"></i>14 jan, 2020
-          </li>
-          <li class="list-inline-item">
-            <ul class="card-meta-tag list-inline">
-              <li class="list-inline-item"><a href="tags.html">Wow</a></li>
-              <li class="list-inline-item"><a href="tags.html">Tasty</a></li>
-            </ul>
-          </li>
-        </ul>
-        <p>It’s no secret that the digital industry is booming. From exciting startups to global brands, companies are reaching out to digital agencies, responding to the new possibilities available.</p>
-        <a href="post-details.html" class="btn btn-outline-primary">Read More</a>
-      </div>
-    </div>
-  </article>
-  
-  <article class="card mb-4">
-    <div class="row card-body">
-      <div class="col-md-4 mb-4 mb-md-0">
-        <div class="post-slider slider-sm">
-          <img src="images/post/post-5.jpg" class="card-img" alt="post-thumb" style="height:200px; object-fit: cover;">
-        </div>
-      </div>
-      <div class="col-md-8">
-        <h3 class="h4 mb-3"><a class="post-title" href="post-details.html">How To Make Cupcakes and Cashmere Recipe At Home</a></h3>
-        <ul class="card-meta list-inline">
-          <li class="list-inline-item">
-            <a href="author-single.html" class="card-meta-author">
-              <img src="images/kate-stone.jpg" alt="Kate Stone">
-              <span>Kate Stone</span>
-            </a>
-          </li>
-          <li class="list-inline-item">
-            <i class="ti-timer"></i>2 Min To Read
-          </li>
-          <li class="list-inline-item">
-            <i class="ti-calendar"></i>14 jan, 2020
-          </li>
-          <li class="list-inline-item">
-            <ul class="card-meta-tag list-inline">
-              <li class="list-inline-item"><a href="tags.html">City</a></li>
-              <li class="list-inline-item"><a href="tags.html">Food</a></li>
-              <li class="list-inline-item"><a href="tags.html">Taste</a></li>
-            </ul>
-          </li>
-        </ul>
-        <p>It’s no secret that the digital industry is booming. From exciting startups to global brands</p>
-        <a href="post-details.html" class="btn btn-outline-primary">Read More</a>
-      </div>
-    </div>
-  </article>
-  
-  <article class="card mb-4">
-    <div class="row card-body">
-      <div class="col-md-4 mb-4 mb-md-0">
-        <div class="post-slider slider-sm">
-          <img src="images/post/design.webp" class="card-img" alt="post-thumb" style="height:200px; object-fit: cover;">
-          <img src="images/post/skiny.webp" class="card-img" alt="post-thumb" style="height:200px; object-fit: cover;">
-        </div>
-      </div>
-      <div class="col-md-8">
-        <h3 class="h4 mb-3"><a class="post-title" href="post-details.html">How To Make Cupcakes and Cashmere Recipe At Home</a></h3>
-        <ul class="card-meta list-inline">
-          <li class="list-inline-item">
-            <a href="author-single.html" class="card-meta-author">
-              <img src="images/john-doe.jpg" alt="John Doe">
-              <span>John Doe</span>
-            </a>
-          </li>
-          <li class="list-inline-item">
-            <i class="ti-timer"></i>2 Min To Read
-          </li>
-          <li class="list-inline-item">
-            <i class="ti-calendar"></i>14 jan, 2020
-          </li>
-          <li class="list-inline-item">
-            <ul class="card-meta-tag list-inline">
-              <li class="list-inline-item"><a href="tags.html">Color</a></li>
-              <li class="list-inline-item"><a href="tags.html">Recipe</a></li>
-              <li class="list-inline-item"><a href="tags.html">Fish</a></li>
-            </ul>
-          </li>
-        </ul>
-        <p>It’s no secret that the digital industry is booming. From exciting startups to global brands</p>
-        <a href="post-details.html" class="btn btn-outline-primary">Read More</a>
-      </div>
-    </div>
-  </article>
-  
-
-  <article class="card mb-4">
-    <div class="row card-body">
-      <div class="col-md-4 mb-4 mb-md-0">
-        <div class="post-slider slider-sm">
-          <img src="images/post/cricket.jpeg" class="card-img" alt="post-thumb" style="height:200px; object-fit: cover;">
-        </div>
-      </div>
-      <div class="col-md-8">
-        <h3 class="h4 mb-3"><a class="post-title" href="post-details.html">Advice From a Twenty Something</a></h3>
-        <ul class="card-meta list-inline">
-          <li class="list-inline-item">
-              <span>Mark Dinn</span>
-          </li>
-          
-          <li class="list-inline-item">
-            <i class="ti-calendar"></i>14 jan, 2020
-          </li>
-          <li class="list-inline-item">
-            <ul class="card-meta-tag list-inline">
-              <li class="list-inline-item"><a href="tags.html">Decorate</a></li>
-              <li class="list-inline-item"><a href="tags.html">Creative</a></li>
-            </ul>
-          </li>
-        </ul>
-        <p>It’s no secret that the digital industry is booming. From exciting startups to global brands</p>
-        <a href="post-details.html" class="btn btn-outline-primary">Read More</a>
-      </div>
-    </div>
-  </article>
-  
-  <article class="card mb-4">
-    <div class="row card-body">
-      <div class="col-md-4 mb-4 mb-md-0">
-        <div class="post-slider slider-sm">
-          <img src="images/post/learning.jpg" class="card-img" alt="post-thumb" style="height:200px; object-fit: cover;">
-        </div>
-      </div>
-      <div class="col-md-8">
-        <h3 class="h4 mb-3"><a class="post-title" href="post-details.html">Advice From a Twenty Something</a></h3>
-        <ul class="card-meta list-inline">
-          <li class="list-inline-item">
-              <span>Charls Xaviar</span>
-          </li>
-          <li class="list-inline-item">
-            <i class="ti-calendar"></i>14 jan, 2020
-          </li>
-          <li class="list-inline-item">
-            <ul class="card-meta-tag list-inline">
-              <li class="list-inline-item"><a href="tags.html">Color</a></li>
-              <li class="list-inline-item"><a href="tags.html">Recipe</a></li>
-              <li class="list-inline-item"><a href="tags.html">Fish</a></li>
-            </ul>
-          </li>
-        </ul>
-        <p> It’s no secret that the digital industry is booming. From exciting startups to global brands</p>
-        <a href="post-details.html" class="btn btn-outline-primary">Read More</a>
-      </div>
-    </div>
-  </article>
-  
-  <article class="card mb-4">
-    <div class="row card-body">
-      <div class="col-12">
-        <h3 class="h4 mb-3"><a class="post-title" href="post-details.html">Cheerful Loving Couple Bakers Drinking Coffee</a></h3>
-        <ul class="card-meta list-inline">
-          <li class="list-inline-item">
-              <span>Kate Stone</span>
-          </li>
-          <li class="list-inline-item">
-            <i class="ti-calendar"></i>14 jan, 2020
-          </li>
-          <li class="list-inline-item">
-            <ul class="card-meta-tag list-inline">
-              <li class="list-inline-item"><a href="tags.html">Wow</a></li>
-              <li class="list-inline-item"><a href="tags.html">Tasty</a></li>
-            </ul>
-          </li>
-        </ul>
-        <p>It’s no secret that the digital industry is booming. From exciting startups to global brands, companies are reaching out to digital agencies, responding to the new possibilities available.</p>
-        <a href="post-details.html" class="btn btn-outline-primary">Read More</a>
-      </div>
-    </div>
-  </article>
-  
-  <article class="card mb-4">
-    <div class="row card-body">
-      <div class="col-md-4 mb-4 mb-md-0">
-        <div class="post-slider slider-sm">
-          <img src="images/post/post-5.jpg" class="card-img" alt="post-thumb" style="height:200px; object-fit: cover;">
-        </div>
-      </div>
-      <div class="col-md-8">
-        <h3 class="h4 mb-3"><a class="post-title" href="post-details.html">How To Make Cupcakes and Cashmere Recipe At Home</a></h3>
-        <ul class="card-meta list-inline">
-          <li class="list-inline-item">
-              <span>Kate Stone</span>
-          </li>
-          <li class="list-inline-item">
-            <i class="ti-calendar"></i>14 jan, 2020
-          </li>
-          <li class="list-inline-item">
-            <ul class="card-meta-tag list-inline">
-              <li class="list-inline-item"><a href="tags.html">City</a></li>
-              <li class="list-inline-item"><a href="tags.html">Food</a></li>
-              <li class="list-inline-item"><a href="tags.html">Taste</a></li>
-            </ul>
-          </li>
-        </ul>
-        <p>It’s no secret that the digital industry is booming. From exciting startups to global brands</p>
-        <a href="post-details.html" class="btn btn-outline-primary">Read More</a>
-      </div>
-    </div>
-  </article>
-  
-  <ul class="pagination justify-content-center">
-    <li class="page-item page-item active ">
-        <a href="#!" class="page-link">1</a>
-    </li>
-    <li class="page-item">
-        <a href="#!" class="page-link">2</a>
-    </li>
-    <li class="page-item">
-        <a href="#!" class="page-link">&raquo;</a>
-    </li>
-  </ul>
 </div>
-      <aside class="col-lg-4 @@sidebar">
-  <!-- Search -->
-  <div class="widget">
-    <h4 class="widget-title"><span>Search</span></h4>
-    <form action="#!" class="widget-search">
-      <input class="mb-3" id="search-query" name="s" type="search" placeholder="Type &amp; Hit Enter...">
-      <i class="ti-search"></i>
-      <button type="submit" class="btn btn-primary btn-block">Search</button>
-    </form>
-  </div>
-
-
-  <!-- categories -->
-  <div class="widget widget-categories">
-    <h4 class="widget-title"><span>Categories</span></h4>
-    <ul class="list-unstyled widget-list">
-      <li><a href="category.html" class="d-flex">Sports <small class="ml-auto">(4)</small></a></li>
-      <li><a href="category.html" class="d-flex">Cricket <small class="ml-auto">(1)</small></a></li>
-      <li><a href="category.html" class="d-flex">Hockey <small class="ml-auto">(1)</small></a></li>
-      <li><a href="category.html" class="d-flex">Learning <small class="ml-auto">(1)</small></a></li>
-      <li><a href="category.html" class="d-flex">English Learning <small class="ml-auto">(1)</small></a></li>
-      <li><a href="category.html" class="d-flex">Natural <small class="ml-auto">(3)</small></a></li>
-      <li><a href="category.html" class="d-flex">Newyork city <small class="ml-auto">(1)</small></a></li>
-      <li><a href="category.html" class="d-flex">Nice <small class="ml-auto">(1)</small></a></li>
-      <li><a href="category.html" class="d-flex">Technical <small class="ml-auto">(2)</small></a></li>
-      <li><a href="category.html" class="d-flex">Videography <small class="ml-auto">(1)</small></a></li>
-      <li><a href="category.html" class="d-flex">Vlog <small class="ml-auto">(1)</small></a></li>
-      <li><a href="category.html" class="d-flex">Wondarland <small class="ml-auto">(1)</small></a></li>
-    </ul>
-  </div><!-- tags -->
-  <div class="widget">
-    <h4 class="widget-title"><span>Tags</span></h4>
-    <ul class="list-inline widget-list-inline widget-card">
-      <li class="list-inline-item"><a href="tags.html">City</a></li>
-      <li class="list-inline-item"><a href="tags.html">Color</a></li>
-      <li class="list-inline-item"><a href="tags.html">Creative</a></li>
-      <li class="list-inline-item"><a href="tags.html">Decorate</a></li>
-      <li class="list-inline-item"><a href="tags.html">Demo</a></li>
-      <li class="list-inline-item"><a href="tags.html">Elements</a></li>
-      <li class="list-inline-item"><a href="tags.html">Fish</a></li>
-      <li class="list-inline-item"><a href="tags.html">Food</a></li>
-      <li class="list-inline-item"><a href="tags.html">Nice</a></li>
-      <li class="list-inline-item"><a href="tags.html">Recipe</a></li>
-      <li class="list-inline-item"><a href="tags.html">Season</a></li>
-      <li class="list-inline-item"><a href="tags.html">Taste</a></li>
-      <li class="list-inline-item"><a href="tags.html">Tasty</a></li>
-      <li class="list-inline-item"><a href="tags.html">Vlog</a></li>
-      <li class="list-inline-item"><a href="tags.html">Wow</a></li>
-    </ul>
-  </div><!-- recent post -->
-  <div class="widget">
-    <h4 class="widget-title">Recent Post</h4>
-
-    <!-- post-item -->
-    <article class="widget-card">
-      <div class="d-flex">
-        <img class="card-img-sm" src="images/post/post-10.jpg">
-        <div class="ml-3">
-          <h5><a class="post-title" href="post/elements/">Elements That You Can Use In This Template.</a></h5>
-          <ul class="card-meta list-inline mb-0">
-            <li class="list-inline-item mb-0">
-              <i class="ti-calendar"></i>15 jan, 2020
-            </li>
-          </ul>
-        </div>
-      </div>
-    </article>
-    
-    <article class="widget-card">
-      <div class="d-flex">
-        <img class="card-img-sm" src="images/post/post-3.jpg">
-        <div class="ml-3">
-          <h5><a class="post-title" href="post-details.html">Advice From a Twenty Something</a></h5>
-          <ul class="card-meta list-inline mb-0">
-            <li class="list-inline-item mb-0">
-              <i class="ti-calendar"></i>14 jan, 2020
-            </li>
-          </ul>
-        </div>
-      </div>
-    </article>
-    
-    <article class="widget-card">
-      <div class="d-flex">
-        <img class="card-img-sm" src="images/post/post-7.jpg">
-        <div class="ml-3">
-          <h5><a class="post-title" href="post-details.html">Advice From a Twenty Something</a></h5>
-          <ul class="card-meta list-inline mb-0">
-            <li class="list-inline-item mb-0">
-              <i class="ti-calendar"></i>14 jan, 2020
-            </li>
-          </ul>
-        </div>
-      </div>
-    </article>
-  </div>
-
-  <!-- Social -->
-  <div class="widget">
-    <h4 class="widget-title"><span>Social Links</span></h4>
-    <ul class="list-inline widget-social">
-      <li class="list-inline-item"><a href="#"><i class="ti-facebook"></i></a></li>
-      <li class="list-inline-item"><a href="#"><i class="ti-twitter-alt"></i></a></li>
-      <li class="list-inline-item"><a href="#"><i class="ti-linkedin"></i></a></li>
-      <li class="list-inline-item"><a href="#"><i class="ti-github"></i></a></li>
-      <li class="list-inline-item"><a href="#"><i class="ti-youtube"></i></a></li>
-    </ul>
-  </div>
-</aside>
+      @include('frontend.layouts.sidebar')
     </div>
   </div>
 </section>

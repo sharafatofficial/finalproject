@@ -14,6 +14,8 @@ use App\Http\Controllers\DashboardController;
 // //     return view('frontend.index');
 // });
 Route::get('/',[IndexController::class,'index']);
+Route::get('/cat_detail/{id}',[IndexController::class,'cat_detail']);
+Route::get('/tag_detail/{id}',[IndexController::class,'tag_detail']);
 // ---------------------------------------------
 
 
