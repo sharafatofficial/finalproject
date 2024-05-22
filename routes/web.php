@@ -16,6 +16,8 @@ use App\Http\Controllers\DashboardController;
 Route::get('/',[IndexController::class,'index']);
 Route::get('/cat_detail/{id}',[IndexController::class,'cat_detail']);
 Route::get('/tag_detail/{id}',[IndexController::class,'tag_detail']);
+Route::get('/post_detail/{id}',[IndexController::class,'post_detail']);
+Route::post('/post_comment/{id}',[IndexController::class,'post_comment']);
 // ---------------------------------------------
 
 
@@ -39,7 +41,7 @@ Route::get('logout', [AuthController::class, 'logout']);
 
 Route::group(['middleware', 'adminuser'], function () {
    
-    Route::get('panel/dashboard', [DashboardController::class, 'dashboard']);
+    Route::get('backend/dashboard', [DashboardController::class, 'dashboard']);
     Route::get('add_post', [PostController::class, 'add_post'])->name('add_post');
     Route::post('store_post', [PostController::class, 'store']);
     Route::get('view_post', [PostController::class, 'view'])->name('post_list');
@@ -64,7 +66,20 @@ Route::group(['middleware', 'adminuser'], function () {
     Route::get('tag_delete/{id}', [TagController::class, 'delete']);
     Route::get('tag_update/{id}', [TagController::class, 'edit']);
     Route::post('update_tag/{id}', [TagController::class, 'update']);
+    
  
+    Route::get('about-us', function(){
+        return view('frontend.aboutus');
+    });
+
+    Route::get('contact-us', function(){
+        return view('frontend.contactus');
+    });
+
+    Route::get('privacy-policy', function(){
+        return view('frontend.pricavypolicy');
+    });
+
 
 });
 

@@ -76,7 +76,7 @@
                   </div>
                 </div>
                 <fieldset class="row mb-3">
-                  <legend class="col-form-label col-sm-2 pt-0">Tranding</legend>
+                  <legend class="col-form-label col-sm-2 pt-0">Trending</legend>
                   <div class="col-sm-10">
                     <div class="form-check">
 

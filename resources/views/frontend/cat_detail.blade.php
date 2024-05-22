@@ -19,7 +19,7 @@ use Carbon\Carbon;
             <img src="{{ asset('public/images/'.$late->thumbnail) }}" class="card-img-top" alt="post-thumb">
           </div>
           <div class="card-body">
-            <h3 class="h4 mb-3"><a class="post-title" href="post-details.html">{{$late->title}}</a></h3>
+            <h3 class="h4 mb-3"><a class="post-title" href="{{url('post_detail/'.$late->id)}}">{{$late->title}}</a></h3>
             <ul class="card-meta list-inline">
               <li class="list-inline-item">
                   <span>{{$late->user->name}}</span>
@@ -35,7 +35,7 @@ use Carbon\Carbon;
               </li>
             </ul>
             <p>{{$late->descripton}}</p>
-            <a href="post-details.html" class="btn btn-outline-primary">Read More</a>
+            <a href="{{url('post_detail/'.$late->id)}}" class="btn btn-outline-primary">Read More</a>
           </div>
         </article>
         </div>

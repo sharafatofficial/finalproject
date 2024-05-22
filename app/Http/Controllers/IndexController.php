@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Tag;
 use App\Models\AddPost;
+use App\Models\Comment;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
@@ -43,6 +44,19 @@ class IndexController extends Controller
         $category=Category::all();
         return view('frontend.cat_detail',compact('posts','tags','category','cat_name'));
     }  
+
+
+    function post_detail($id){
+
+        $post=AddPost::where('id',$id)->first();
+        $comment=Comment::where('post_id',$id)->get();
+        return view('frontend.post_detail',compact('post','comment'));
+    }
+
+    function post_comment(Request $request,$id){
+        Comment::create($request->all());
+        return redirect()->back();
+    }
 
 
 }

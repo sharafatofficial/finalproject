@@ -12,7 +12,7 @@ use Carbon\Carbon;
         <ul class="list-inline widget-list-inline">
             @foreach($tags as $tag)
 
-          <li class="list-inline-item"><a href="{{url('post_detail').'/'.$tag->id}}">{{$tag->name}}</a></li>
+          <li class="list-inline-item"><a href="{{url('tag_detail').'/'.$tag->id}}">{{$tag->name}}</a></li>
           @endforeach
         </ul>
       </div>
@@ -108,7 +108,7 @@ use Carbon\Carbon;
           <div class="card-body d-flex">
             <img class="card-img-sm" src="{{ asset('public/images/'.$post->thumbnail) }}">
             <div class="ml-3">
-              <h4><a href="post-details.html" class="post-title">{{$post->title}}</a></h4>
+              <h4><a href="{{url('post_detail/'.$post->id)}}" class="post-title">{{$post->title}}</a></h4>
               <ul class="card-meta list-inline mb-0">
                 <li class="list-inline-item mb-0">
                   <i class="ti-calendar"></i>{{ Carbon::parse($post->created_at)->format('Y-m-d') }}
@@ -131,7 +131,7 @@ use Carbon\Carbon;
             <img src="{{ asset('public/images/'.$late->thumbnail) }}" class="card-img-top" alt="post-thumb">
           </div>
           <div class="card-body">
-            <h3 class="h4 mb-3"><a class="post-title" href="post-details.html">{{$late->title}}</a></h3>
+            <h3 class="h4 mb-3"><a class="post-title" href="{{url('post_detail/'.$late->id)}}">{{$late->title}}</a></h3>
             <ul class="card-meta list-inline">
               <li class="list-inline-item">
                   <span>{{$late->user->name}}</span>
@@ -147,7 +147,7 @@ use Carbon\Carbon;
               </li>
             </ul>
             <p>{{$late->descripton}}</p>
-            <a href="post-details.html" class="btn btn-outline-primary">Read More</a>
+            <a href="{{url('post_detail/'.$late->id)}}" class="btn btn-outline-primary">Read More</a>
           </div>
         </article>
         @endforeach
@@ -173,7 +173,7 @@ use Carbon\Carbon;
             <img src="{{ asset('public/images/'.$late->thumbnail) }}" class="card-img-top" alt="post-thumb">
           </div>
           <div class="card-body">
-            <h3 class="h4 mb-3"><a class="post-title" href="post-details.html">{{$late->title}}</a></h3>
+            <h3 class="h4 mb-3"><a class="post-title" href="{{url('post_detail/'.$late->id)}}">{{$late->title}}</a></h3>
             <ul class="card-meta list-inline">
               <li class="list-inline-item">
                   <span>{{$late->user->name}}</span>
@@ -189,7 +189,7 @@ use Carbon\Carbon;
               </li>
             </ul>
             <p>{{$late->descripton}}</p>
-            <a href="post-details.html" class="btn btn-outline-primary">Read More</a>
+            <a href="{{url('post_detail/'.$late->id)}}" class="btn btn-outline-primary">Read More</a>
           </div>
         </article>
         </div>
